@@ -19,7 +19,7 @@ First, we need a copy of the Microsoft Windows 10 operating System.
 ## Section B: Extract Files from the ISO
 
 Second, we need to extract some files. An ISO is simply a type of archive (like a zip file or a 7z file). We need to extract the install.esd from the Windows.iso archive.
-We will be using the install.esd to create an answer file. I have already included an answer file in this repo. So you can save yourself some time by skipping this step and just using the answer file I provide. If you want to make your own then follow these steps.
+We will be using the install.esd to create an answer file. I have already included an answer file in this repo. So you can save yourself some time by skipping this step and just using the answer file I provide (called unattend.xml). If you want to make your own then follow these steps.
 1) If you do not already have 7-Zip installed on your computer head over to https://www.7-zip.org/ to download and install the 7-Zip.
 2) Right-click on the Windows.iso that you downloaded in the previous section (located at C:\Windows10AISB\Windows.iso), select 7-Zip from the context menu, in the fly-out menu select "Open archive". An alternate method is to launch 7-Zip and navigate to C:\Windows10AISB and double-clicking on the Windows.iso file.
 3) When the Windows.iso archive is open go to the "sources" folder and locate the "install.esd" file. Right-click the install.esd file and choose "Copy To..."
