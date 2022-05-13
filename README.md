@@ -1,4 +1,4 @@
-# Windows10AISB
+# Windows 10 As It Should Be
 This user guide will show you how to create a customized Windows 10 installation medium.
 
 The goal of this project is to have a stripped-down version of Windows 10 that can be installed on any hardware. The finalized image should have a clean start menu with no tiles, be free of any superfluous software (bloatware), and have a clean taskbar and desktop.
