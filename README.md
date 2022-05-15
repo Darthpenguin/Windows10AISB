@@ -39,8 +39,8 @@ Now we need to install the Windows Assessment and Deployment Kit. This is an abs
 
 ## Section E: Creating the Answer File
 This process looks very daunting at first, but we are just going to create a very simple answer file.
-#. Launch the *Windows System Image Manager*.
-#. Right-click on *Select a Windows image or catalog file* and *Select Windows Image...*
+1) Launch the *Windows System Image Manager*.
+2) Right-click on *Select a Windows image or catalog file* and *Select Windows Image...*
 3) Select and open the image file which we extracted to C:\Windows10AISB\install.wim
 4) A catalog file will need to be created. Click **[ Yes ]**. It might take a few minutes to create the catalog. Time for another coffee.
 5) Select *File* > *New Answer File...*
@@ -50,13 +50,13 @@ This process looks very daunting at first, but we are just going to create a ver
 9) Now in the **Answer File** area, in Pass 1 (windowsPE) under UserData we are going to set *AcceptEULA* to **true**
 10) Under Pass 4 (specialize), set *CopyProfile* to **true**
 11) In Pass 7 (oobeSystem) we have a few settings to configure:
-    i) *HideEULAPage* = **true**
-	ii) *HideLocalAccountScreen* = **false**
-	iii) *HideOEMRegistrationScreen* = **true**
-	iv) *HideOnlineAccountScreens* = **true**
-	v) *HideWirelessSetuoInOOBE* = **true**
-	vi) *SkipMachineOOBE* = **true**
-	vii) *SkipUserOOBE* = **true**
+    * *HideEULAPage* = **true**
+    * *HideLocalAccountScreen* = **false**
+    * *HideOEMRegistrationScreen* = **true**
+    * *HideOnlineAccountScreens* = **true**
+    * *HideWirelessSetuoInOOBE* = **true**
+    * *SkipMachineOOBE* = **true**
+    * *SkipUserOOBE* = **true**
 12) Save the file answer file as Unattend.xml in our project folder at C:\Windows10AISB
 
 ## Section F: Create the WinPE ISO
