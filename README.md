@@ -35,10 +35,42 @@ Now we need to install the Windows Assessment and Deployment Kit. This is an abs
 1) Go to https://docs.microsoft.com/en-us/windows-hardware/get-started/adk-install. Find and Download the "Windows ADK for Windows 10, version 2004" and the "Windows PE add-on for ADK, version 1903"
 2) Install the adksetup.exe file first
 3) We only need to select the Deployment Tools
-4) Install the adkwinpesetup.exe. This can take a while as the installer will go out to the internet to acquire the the Windows Preinstallation Environment. Time for another cup of tea.
+4) Install the adkwinpesetup.exe. This can take a while as the installer will go out to the internet to acquire the the Windows Preinstallation Environment. Time for another cup of coffee.
 
 ## Section E: Creating the Answer File
+This process looks very daunting at first, but we are just going to create a very simple answer file.
+1) Launch the *Windows System Image Manager*.
+2) Right-click on *Select a Windows image or catalog file* and *Select Windows Image...*
+3) Select and open the image file which we extracted to C:\Windows10AISB\install.wim
+4) A catalog file will need to be created. Click **[ Yes ]**. It might take a few minutes to create the catalog. Time for another coffee.
+5) Select *File* > *New Answer File...*
+6) In the **Windows Image** area, under *Components* look for *amd64_Microsoft-Windows-Setup_{Version Number}_neutral*. Expand that, right-click on UserData and add the setting to **Pass 1**
+7) Next, right-click on *amd64_Microsoft-Windows-Shell-Setup_{Version Number}_neutral* and add it to **Pass 4**
+8) Still under Components, expand *amd64_Microsoft-Windows-Shell-Setup{Version Number}_neutral*, right-click on *OOBE* and add the setting to **Pass 7**
+9) Now in the **Answer File** area, in Pass 1 (windowsPE) under UserData we are going to set *AcceptEULA* to **true**
+10) Under Pass 4 (specialize), set *CopyProfile* to **true**
+11) In Pass 7 (oobeSystem) we have a few settings to configure:
+	i) *HideEULAPage* = **true**
+	ii) *HideLocalAccountScreen* = **false**
+	iii) *HideOEMRegistrationScreen* = **true**
+	iv) *HideOnlineAccountScreens* = **true**
+	v) *HideWirelessSetuoInOOBE* = **true**
+	vi) *SkipMachineOOBE* = **true**
+	vii) *SkipUserOOBE* = **true**
+12) Save the file answer file as Unattend.xml in our project folder at C:\Windows10AISB
 
+## Section F: Create the WinPE ISO
+Now we need to create a WinPE ISO file.
+1) Start the DISM (Deployment and Imaging Tools Environment) Run as administrator.
+2) copype amd64 C:\Windows10AISB\WinPE_amd64
+3) MakeWinPEMedia /ISO C:\WinPE_amd64 C:\Windows10AISB\WinPE_amd64\WinPE_amd64.iso
 
-## Section ??: Create the WinPE ISO
-Now that we have the 
+## Section G: Install Windows on a Reference Machine | Writing the Windows.iso to a USB
+Now that we have laid some of the ground work it is time to get down to brass tax. Actually customizing Windows 10. For our example we are going to use a spare laptop as a reference machine. If you are familiar with virtualisation (proxmox, vmware, hyper-v, virtualbox, etc.) you can defiantly create a new virtual machine to use as a reference system. Keep in mind that the point of creating the custom image in the first place is to change some personalization settings and capture our personalization settings as the new defaults. Some personalization settings cannot be changed unless Windows 10 is activated. Windows 10 typically activates automatically when installed on OEM hardware. If you are going to use a virtual machine you will want to be sure you have a valid licence key to activate Windows.
+1) First, we need to grab the *Rufus* program from https://rufus.ie/en/. Download it and save it in C:\Windows10AISB
+2) Grab a blank USB flash drive that is at least 16GB and connect it to your computer. Then run the rufus.exe program
+3) In Rufus, select the Windows.iso file which was downloaded in Section A (it should be in C:\Windows10AISB).
+4) Make sure the selected device is your 16GB USB flash drive.
+5) When you are ready, click [START]. Wait for Rufus to write the ISO files to the USB. Time for yet another coffee.
+
+## Section H: 
